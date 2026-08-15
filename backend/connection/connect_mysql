@@ -1,0 +1,20 @@
+import mysql.connector as ms
+
+class ProfessorRepository:
+
+    def create(self, professor):
+        pass
+
+    def find_by_email(self, email):
+        pass
+
+    def find_by_id(self, professor_id):
+        pass
+
+    def update(self, professor):
+        pass
+
+    def delete(self, professor_id):
+        pass
+
+    
