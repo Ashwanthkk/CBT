@@ -1,12 +1,16 @@
+import os
 import mysql.connector as ms
 from admins import Professor
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 mycon = ms.connect(
     host="localhost",
-    database="your_database_name",
-    user="your_username",
-    password="your_password"
+    database=os.getenv("DB_NAME"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD")
 )
 
 mycursor = mycon.cursor()
