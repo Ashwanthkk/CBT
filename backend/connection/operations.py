@@ -1,6 +1,6 @@
 import os
 import mysql.connector as ms
-from admins import Professor
+from connection.admins import Professor
 from dotenv import load_dotenv
 
 load_dotenv()

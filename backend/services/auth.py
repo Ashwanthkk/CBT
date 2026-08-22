@@ -1,6 +1,7 @@
 import smtplib
 import secrets
 import os
+import bcrypt
 from datetime import datetime, timedelta
 from email.message import EmailMessage
 from dotenv import load_dotenv
@@ -8,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-class Email_verification:
+class Authentication:
 
     def __init__(self, email):
         self.email = email
@@ -72,10 +73,19 @@ class Email_verification:
 
         return False
 
+    @staticmethod
+    def hash(password):
+        return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
+    @staticmethod
+    def verify_hash(og_password,hashed_password):
+        return bcrypt.checkpw(og_password.encode("utf-8"),hashed_password.encode("utf-8"))
+
+
 
 if __name__ == "__main__":
 
-    load_email = Email_verification(
+    load_email = Authentication(
         "soumyap952@gmail.com"
     )
 
