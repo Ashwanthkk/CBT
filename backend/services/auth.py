@@ -54,7 +54,7 @@ class Authentication:
 
             smtp.send_message(message)
 
-        return True
+        return (True,self.otp)
 
     def verify(self, user_otp):
 
