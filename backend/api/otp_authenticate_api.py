@@ -98,3 +98,35 @@ def verify_otp(otp_data:otp_verification):
             "message":result[1]
         }
 
+
+@router.post("/resend-otp")
+def resend_otp(data: email_verification):
+
+    auth = Authentication(data.email)
+
+    # Generate and send a NEW OTP
+    res = auth.send_otp()
+
+    if not res[0]:
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to resend OTP"
+        )
+
+    expiry_time = datetime.now() + timedelta(minutes=10)
+
+    otp_op = otp_operations(
+        data.email,
+        res[1],
+        expiry_time
+    )
+
+    # upload() already checks whether an OTP
+    # exists for this email and clears it.
+    success = otp_op.upload()
+
+    return {
+        "email": data.email,
+        "result": success
+    }
+

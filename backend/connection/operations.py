@@ -175,7 +175,7 @@ class ProfessorRepository:
             return None
 
 
-    def update(self, professor, **args):
+    def update(self, professor, **kwargs):
 
         allowed_fields = {
             "profile_id",
@@ -191,21 +191,21 @@ class ProfessorRepository:
             "status"
         }
 
-        for field in args:
+        for field in kwargs:
             if field not in allowed_fields:
                 raise ValueError(f"Cannot update field: {field}")
 
-        if not args:
+        if not kwargs:
             return False
 
-        values = list(args.values())
+        values = list(kwargs.values())
 
         # professor_id is used only to identify the professor
         values.append(professor.professor_id)
 
         set_clause = ", ".join(
             f"{field} = %s"
-            for field in args
+            for field in kwargs
         )
 
         query = f"""

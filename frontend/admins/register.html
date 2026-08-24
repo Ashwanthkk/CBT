@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Professor Account</title>
+
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+    <main class="page">
+
+        <section class="card">
+
+            <div class="header">
+
+                <div class="logo">
+                    CBT
+                </div>
+
+                <h1>Create account</h1>
+
+                <p>
+                    Create your professor account
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+                <!-- Profile ID -->
+
+                <div class="form-group">
+
+                    <label for="profile_id">
+                        Profile ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profile_id"
+                        placeholder="PROF001"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Name -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="John Doe"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="john@example.com"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="phone_number">
+                        Phone number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone_number"
+                        placeholder="9876543210"
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- University -->
+
+                <div class="form-group">
+
+                    <label for="university_id">
+                        University ID
+                    </label>
+
+                    <input
+                        type="number"
+                        id="university_id"
+                        placeholder="1"
+                    >
+
+                </div>
+
+
+                <!-- Department -->
+
+                <div class="form-group">
+
+                    <label for="department_id">
+                        Department ID
+                    </label>
+
+                    <input
+                        type="number"
+                        id="department_id"
+                        placeholder="2"
+                    >
+
+                </div>
+
+
+                <!-- Designation -->
+
+                <div class="form-group">
+
+                    <label for="designation">
+                        Designation
+                    </label>
+
+                    <input
+                        type="text"
+                        id="designation"
+                        placeholder="Professor"
+                    >
+
+                </div>
+
+
+                <!-- Employee ID -->
+
+                <div class="form-group">
+
+                    <label for="employee_id">
+                        Employee ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="employee_id"
+                        placeholder="EMP001"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="submitButton"
+                >
+                    Continue
+                </button>
+
+            </form>
+
+
+            <p
+                id="message"
+                class="message"
+            ></p>
+
+        </section>
+
+    </main>
+
+
+    <script src="register.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,478 @@
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f5f6f8;
+
+    color: #111827;
+
+}
+
+
+
+.page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+}
+
+
+
+
+.card {
+
+    width: 100%;
+
+    max-width: 420px;
+
+    padding: 40px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+}
+
+
+
+.icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    font-size: 20px;
+
+}
+
+
+
+
+h1 {
+
+    margin: 0 0 10px;
+
+    font-size: 25px;
+
+    font-weight: 600;
+
+}
+
+
+.description {
+
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+.email {
+
+    margin: 7px 0 30px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    word-break: break-all;
+
+}
+
+
+
+
+form {
+
+    text-align: left;
+
+}
+
+
+label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+
+
+#otp {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 22px;
+
+    letter-spacing: 7px;
+
+    transition:
+        border-color 0.2s;
+
+}
+
+
+#otp:focus {
+
+    border-color: #111827;
+
+}
+
+
+#otp::placeholder {
+
+    color: #d1d5db;
+
+}
+
+
+
+
+#verifyButton {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+#verifyButton:hover {
+
+    background: #1f2937;
+
+}
+
+
+#verifyButton:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
+
+
+.resend-section {
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e5e7eb;
+
+}
+
+
+.resend-section p {
+
+    margin: 0 0 8px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+}
+
+
+
+#resendButton {
+
+    border: none;
+
+    background: transparent;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+#resendButton:hover {
+
+    text-decoration: underline;
+
+}
+
+
+#resendButton:disabled {
+
+    color: #9ca3af;
+
+    cursor: not-allowed;
+
+    text-decoration: none;
+
+}
+
+
+
+
+.timer {
+
+    margin-top: 8px !important;
+
+    font-size: 12px !important;
+
+    color: #9ca3af !important;
+
+}
+
+
+
+.message {
+
+    min-height: 20px;
+
+    margin-top: 18px;
+
+    font-size: 13px;
+
+}
+
+
+
+
+
+
+
+.success-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.45);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+
+}
+
+
+
+.success-popup {
+
+    width: 100%;
+
+    max-width: 360px;
+
+    padding: 35px 30px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.15);
+
+    animation:
+        popup 0.2s ease-out;
+
+}
+
+
+
+
+.success-icon {
+
+    width: 50px;
+
+    height: 50px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 22px;
+
+}
+
+
+
+.success-popup h2 {
+
+    margin: 0 0 10px;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+}
+
+
+
+
+.success-popup p {
+
+    margin: 0 0 25px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+
+#continueButton {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+#continueButton:hover {
+
+    background: #1f2937;
+
+}
+
+
+
+@keyframes popup {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+
+@media (max-width: 500px) {
+
+    .card {
+
+        padding:
+            30px 22px;
+
+    }
+
+}
