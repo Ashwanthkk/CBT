@@ -67,7 +67,7 @@ class otp_operations:
     def verify(self, current_time):
 
         verify_query = """
-            SELECT email, expiry_date
+            SELECT *
             FROM email_verification
             WHERE email = %s AND otp = %s
         """
@@ -79,10 +79,11 @@ class otp_operations:
             )
 
             res = mycursor.fetchone()
+          #  print(res)
 
             if res:
 
-                if current_time > res[1]:
+                if current_time > res[2]:
                     return (False, "otp_expired")
 
                 else:

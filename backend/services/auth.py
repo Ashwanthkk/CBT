@@ -86,7 +86,7 @@ class Authentication:
 if __name__ == "__main__":
 
     load_email = Authentication(
-        "soumyap952@gmail.com"
+        "test@gmail.com"
     )
 
     load_email.send_otp()

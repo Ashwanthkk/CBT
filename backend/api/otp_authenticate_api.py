@@ -94,7 +94,7 @@ def verify_otp(otp_data:otp_verification):
 
     return {
             "email":otp_data.email,
-            "result":result,
+            "result":result[0],
             "message":result[1]
         }
 
@@ -104,7 +104,6 @@ def resend_otp(data: email_verification):
 
     auth = Authentication(data.email)
 
-    # Generate and send a NEW OTP
     res = auth.send_otp()
 
     if not res[0]:
@@ -121,8 +120,6 @@ def resend_otp(data: email_verification):
         expiry_time
     )
 
-    # upload() already checks whether an OTP
-    # exists for this email and clears it.
     success = otp_op.upload()
 
     return {
