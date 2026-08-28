@@ -16,6 +16,8 @@ mycursor = mycon.cursor()
 
 class login_verify:
 
+    
+
     def __init__(self,email,password):
         self.email=email
         self.password=password
