@@ -6,3 +6,5 @@
 > - **Testing:** LLM-generated test scripts are permitted.
 >
 > Contributions are welcome, provided these guidelines are followed.
+>
+>Currently in development phase.
