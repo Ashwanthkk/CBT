@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from api.create_account_api import router as create_api
 from api.otp_authenticate_api import router as otp_api
+from api.verify_login_api import router as login_api
 
 
 app = FastAPI()
@@ -22,3 +23,4 @@ app.add_middleware(
 
 app.include_router(create_api)
 app.include_router(otp_api)
+app.include_router(login_api)

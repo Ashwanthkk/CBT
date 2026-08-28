@@ -78,8 +78,8 @@ class Authentication:
         return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
 
     @staticmethod
-    def verify_hash(og_password,hashed_password):
-        return bcrypt.checkpw(og_password.encode("utf-8"),hashed_password.encode("utf-8"))
+    def verify_hash(password, hashed_password):
+        return bcrypt.checkpw(password.encode("utf-8"),hashed_password.encode("utf-8"))
 
 
 
