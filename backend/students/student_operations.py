@@ -1,103 +1,88 @@
+
 import os
-import mysql.connector as ms
-from students.Student import Students as Student
+import mysql.connector
 from dotenv import load_dotenv
+
+from students.Student import Students as Student
 
 load_dotenv()
 
-
-mycon = ms.connect(
-    host="localhost",
-    database=os.getenv("DB_NAME"),
+mycon = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
     user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD")
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
 )
 
 mycursor = mycon.cursor()
 
 
-class StudentRepository:
+class StudentMethods:
 
     def create(
         self,
-        profile_id,
-        name,
+        full_name,
         email,
-        password_hash,
-        phone_number=None,
-        university_id=None,
-        department_id=None,
-        course=None,
-        semester=None,
-        roll_number=None
+        mobile_number,
+        board_name,
+        roll_number,
+        passing_year,
+        percentage=None,
+        is_declared=False
     ):
-        """Returns True if data is successfully created, else False."""
-
-        query = """
-            INSERT INTO students (
-                profile_id,
-                name,
-                email,
-                password_hash,
-                phone_number,
-                university_id,
-                department_id,
-                course,
-                semester,
-                roll_number
-            )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """
-
         try:
-            mycursor.execute(query, (
-                profile_id,
-                name,
-                email,
-                password_hash,
-                phone_number,
-                university_id,
-                department_id,
-                course,
-                semester,
-                roll_number
-            ))
+            query = """
+                INSERT INTO students (
+                    full_name,
+                    email,
+                    mobile_number,
+                    board_name,
+                    roll_number,
+                    passing_year,
+                    percentage,
+                    is_declared
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """
 
+            values = (
+                full_name,
+                email,
+                mobile_number,
+                board_name,
+                roll_number,
+                passing_year,
+                percentage,
+                is_declared
+            )
+
+            mycursor.execute(query, values)
             mycon.commit()
             return True
 
-        except ms.Error as e:
+        except mysql.connector.Error as e:
             mycon.rollback()
-            print("Database error:", e)
+            print(f"Error creating student: {e}")
             return False
 
-
     def find_by_email(self, email):
-        """
-        Returns a Student object if the email exists,
-        otherwise returns None.
-        """
-
-        query = """
-            SELECT
-                student_id,
-                profile_id,
-                name,
-                email,
-                phone_number,
-                university_id,
-                department_id,
-                course,
-                semester,
-                roll_number,
-                password_hash,
-                status,
-                last_login_at
-            FROM students
-            WHERE email = %s
-        """
-
         try:
+            query = """
+                SELECT
+                    registration_id,
+                    full_name,
+                    email,
+                    mobile_number,
+                    board_name,
+                    roll_number,
+                    passing_year,
+                    percentage,
+                    is_declared,
+                    created_at
+                FROM students
+                WHERE email = %s
+            """
+
             mycursor.execute(query, (email,))
             row = mycursor.fetchone()
 
@@ -105,145 +90,120 @@ class StudentRepository:
                 return None
 
             return Student(
-                student_id=row[0],
-                profile_id=row[1],
-                name=row[2],
-                email=row[3],
-                phone_number=row[4],
-                university_id=row[5],
-                department_id=row[6],
-                course=row[7],
-                semester=row[8],
-                roll_number=row[9],
-                password_hash=row[10],
-                status=row[11],
-                last_login_at=row[12]
+                registration_id=row[0],
+                full_name=row[1],
+                email=row[2],
+                mobile_number=row[3],
+                board_name=row[4],
+                roll_number=row[5],
+                passing_year=row[6],
+                percentage=row[7],
+                is_declared=row[8],
+                created_at=row[9]
             )
 
-        except ms.Error as e:
-            print("Database error:", e)
+        except mysql.connector.Error as e:
+            print(f"Error finding student by email: {e}")
             return None
 
-
-    def find_by_id(self, student_id):
-        """
-        Returns a Student object if the ID exists,
-        otherwise returns None.
-        """
-
-        query = """
-            SELECT
-                student_id,
-                profile_id,
-                name,
-                email,
-                phone_number,
-                university_id,
-                department_id,
-                course,
-                semester,
-                roll_number,
-                password_hash,
-                status,
-                last_login_at
-            FROM students
-            WHERE student_id = %s
-        """
-
+    def find_by_id(self, registration_id):
         try:
-            mycursor.execute(query, (student_id,))
+            query = """
+                SELECT
+                    registration_id,
+                    full_name,
+                    email,
+                    mobile_number,
+                    board_name,
+                    roll_number,
+                    passing_year,
+                    percentage,
+                    is_declared,
+                    created_at
+                FROM students
+                WHERE registration_id = %s
+            """
+
+            mycursor.execute(query, (registration_id,))
             row = mycursor.fetchone()
 
             if row is None:
                 return None
 
             return Student(
-                student_id=row[0],
-                profile_id=row[1],
-                name=row[2],
-                email=row[3],
-                phone_number=row[4],
-                university_id=row[5],
-                department_id=row[6],
-                course=row[7],
-                semester=row[8],
-                roll_number=row[9],
-                password_hash=row[10],
-                status=row[11],
-                last_login_at=row[12]
+                registration_id=row[0],
+                full_name=row[1],
+                email=row[2],
+                mobile_number=row[3],
+                board_name=row[4],
+                roll_number=row[5],
+                passing_year=row[6],
+                percentage=row[7],
+                is_declared=row[8],
+                created_at=row[9]
             )
 
-        except ms.Error as e:
-            print("Database error:", e)
+        except mysql.connector.Error as e:
+            print(f"Error finding student by ID: {e}")
             return None
 
-
     def update(self, student, **kwargs):
-
         allowed_fields = {
-            "profile_id",
-            "name",
+            "full_name",
             "email",
-            "phone_number",
-            "university_id",
-            "department_id",
-            "course",
-            "semester",
+            "mobile_number",
+            "board_name",
             "roll_number",
-            "password_hash",
-            "status"
+            "passing_year",
+            "percentage",
+            "is_declared"
         }
-
-        for field in kwargs:
-            if field not in allowed_fields:
-                raise ValueError(f"Cannot update field: {field}")
 
         if not kwargs:
             return False
 
-        values = list(kwargs.values())
-
-        # student_id is used only to identify the student
-        values.append(student.student_id)
-
-        set_clause = ", ".join(
-            f"{field} = %s"
-            for field in kwargs
-        )
-
-        query = f"""
-            UPDATE students
-            SET {set_clause}
-            WHERE student_id = %s
-        """
+        if any(field not in allowed_fields for field in kwargs):
+            raise ValueError("Invalid field provided for update")
 
         try:
+            set_clause = ", ".join(
+                f"{field} = %s" for field in kwargs
+            )
+
+            query = f"""
+                UPDATE students
+                SET {set_clause}
+                WHERE registration_id = %s
+            """
+
+            values = tuple(kwargs.values()) + (
+                student.registration_id,
+            )
+
             mycursor.execute(query, values)
             mycon.commit()
 
             return mycursor.rowcount > 0
 
-        except ms.Error as e:
+        except mysql.connector.Error as e:
             mycon.rollback()
-            print("Database error:", e)
+            print(f"Error updating student: {e}")
             return False
 
-
-    def delete(self, student_id):
-        """Deletes a student using student_id."""
-
-        query = """
-            DELETE FROM students
-            WHERE student_id = %s
-        """
-
+    def delete(self, registration_id):
         try:
-            mycursor.execute(query, (student_id,))
+            query = """
+                DELETE FROM students
+                WHERE registration_id = %s
+            """
+
+            mycursor.execute(query, (registration_id,))
             mycon.commit()
 
             return mycursor.rowcount > 0
 
-        except ms.Error as e:
+        except mysql.connector.Error as e:
             mycon.rollback()
-            print("Database error:", e)
+            print(f"Error deleting student: {e}")
             return False
+

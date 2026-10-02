@@ -1,30 +1,25 @@
+
 class Students:
     def __init__(
         self,
-        student_id=None,
-        profile_id=None,
-        name=None,
+        registration_id=None,
+        full_name=None,
         email=None,
-        phone_number=None,
-        university_id=None,
-        department_id=None,
-        course=None,
-        semester=None,
+        mobile_number=None,
+        board_name=None,
         roll_number=None,
-        password_hash=None,
-        status="ACTIVE",
-        last_login_at=None
+        passing_year=None,
+        percentage=None,
+        is_declared=False,
+        created_at=None
     ):
-        self.student_id = student_id
-        self.profile_id = profile_id
-        self.name = name
+        self.registration_id = registration_id
+        self.full_name = full_name
         self.email = email
-        self.phone_number = phone_number
-        self.university_id = university_id
-        self.department_id = department_id
-        self.course = course
-        self.semester = semester
+        self.mobile_number = mobile_number
+        self.board_name = board_name
         self.roll_number = roll_number
-        self.password_hash = password_hash
-        self.status = status
-        self.last_login_at = last_login_at
+        self.passing_year = passing_year
+        self.percentage = percentage
+        self.is_declared = is_declared
+        self.created_at = created_at
